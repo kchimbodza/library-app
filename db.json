@@ -1,0 +1,193 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123",
+      "role": "librarian"
+    },
+    {
+      "id": "2",
+      "username": "user1",
+      "password": "user123",
+      "role": "user"
+    },
+    {
+      "id": "2766",
+      "username": "admin2",
+      "password": "admin123",
+      "role": "librarian"
+    },
+    {
+      "id": "9ad9",
+      "username": "user2",
+      "password": "user123",
+      "role": "user"
+    }
+  ],
+  "books": [
+    {
+      "id": "2",
+      "title": "1985",
+      "author": "Tawanda Muzee",
+      "genre": "Dystopian",
+      "rating": 5,
+      "status": "Checked Out"
+    },
+    {
+      "id": "3",
+      "title": "Clean Code",
+      "author": "Robert Martin",
+      "genre": "Technology",
+      "rating": 4,
+      "status": "Available"
+    },
+    {
+      "id": "a61a",
+      "title": "Money Mastery",
+      "author": "Ron Manguda",
+      "genre": "Finance",
+      "rating": 4,
+      "status": "Checked Out"
+    },
+    {
+      "id": "3290",
+      "title": "Web Dev Mastered",
+      "author": "Kudzayi Chimbodza",
+      "genre": "Technology",
+      "rating": 5,
+      "status": "Available"
+    },
+    {
+      "id": "6b40",
+      "title": "Art of Success",
+      "author": "Kudzayi Chimbodza",
+      "genre": "Inspiration",
+      "rating": 5,
+      "status": "Checked Out"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "d00d",
+      "bookId": null,
+      "bookTitle": "Money Mastery",
+      "username": "admin",
+      "action": "Checkout",
+      "timestamp": "2026-02-14T20:40:12.458Z"
+    },
+    {
+      "id": "c2b6",
+      "bookId": 1,
+      "bookTitle": "The Great Gatsby",
+      "username": "admin",
+      "action": "Checkout",
+      "timestamp": "2026-02-14T20:40:18.617Z"
+    },
+    {
+      "id": "17a7",
+      "bookId": 1,
+      "bookTitle": "The Great Gatsby",
+      "username": "user1",
+      "action": "Return",
+      "timestamp": "2026-02-14T20:40:31.778Z"
+    },
+    {
+      "id": "323a",
+      "bookId": null,
+      "bookTitle": "Money Mastery",
+      "username": "user1",
+      "action": "Return",
+      "timestamp": "2026-02-14T20:40:34.158Z"
+    },
+    {
+      "id": "4e8b",
+      "bookId": 2,
+      "bookTitle": "1984",
+      "username": "admin",
+      "action": "Checkout",
+      "timestamp": "2026-02-14T20:50:06.988Z"
+    },
+    {
+      "id": "3b12",
+      "bookId": 2,
+      "bookTitle": "1984",
+      "username": "admin",
+      "action": "Return",
+      "timestamp": "2026-02-14T20:50:13.944Z"
+    },
+    {
+      "id": "3964",
+      "bookId": null,
+      "bookTitle": "Money Mastery",
+      "username": "admin",
+      "action": "Checkout",
+      "timestamp": "2026-02-14T20:50:17.662Z"
+    },
+    {
+      "id": "b3fe",
+      "bookId": 2,
+      "bookTitle": "1984",
+      "username": "admin",
+      "action": "Checkout",
+      "timestamp": "2026-02-14T21:17:56.663Z"
+    },
+    {
+      "id": "f224",
+      "bookId": 3290,
+      "bookTitle": "Web Dev Mastered",
+      "username": "admin",
+      "action": "Checkout",
+      "timestamp": "2026-02-14T21:18:01.302Z"
+    },
+    {
+      "id": "07ae",
+      "bookId": 3290,
+      "bookTitle": "Web Dev Mastered",
+      "username": "user1",
+      "action": "Return",
+      "timestamp": "2026-02-14T21:18:18.795Z"
+    },
+    {
+      "id": "1ef6",
+      "bookId": 3,
+      "bookTitle": "Clean Code",
+      "username": "user2",
+      "action": "Checkout",
+      "timestamp": "2026-02-14T21:21:09.398Z"
+    },
+    {
+      "id": "da38",
+      "bookId": 2,
+      "bookTitle": "1984",
+      "username": "user2",
+      "action": "Return",
+      "timestamp": "2026-02-14T21:21:11.375Z"
+    },
+    {
+      "id": "67f1",
+      "bookId": 2,
+      "bookTitle": "1984",
+      "username": "admin",
+      "action": "Checkout",
+      "timestamp": "2026-03-10T23:43:07.651Z"
+    },
+    {
+      "id": "3ff0",
+      "bookId": 3,
+      "bookTitle": "Clean Code",
+      "username": "admin",
+      "action": "Return",
+      "timestamp": "2026-03-10T23:43:32.299Z"
+    },
+    {
+      "id": "83bb",
+      "bookId": null,
+      "bookTitle": "Art of Success",
+      "username": "admin",
+      "action": "Checkout",
+      "timestamp": "2026-03-10T23:45:07.902Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
