@@ -9,6 +9,13 @@ backed by a JSON Server REST API.
 - Checkout and return books
 - Librarians can add, edit, and delete books
 - Transaction history log
+## Screenshots
+
+![Login](screenshots/login.png)
+![Book Catalogue](screenshots/catalogue.png)
+![Add Book](screenshots/add-book.png)
+![Edit Book](screenshots/edit-dialog.png)
+![Transaction History](screenshots/history.png)
 
 ## Tech Stack
 React, Material UI (MUI), Vite, JSON Server
