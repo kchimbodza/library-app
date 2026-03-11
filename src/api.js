@@ -1,122 +1,88 @@
-// This file handles all communication with the backend (json-server on port 3000)
-// Every function here sends a request to the server and returns the result
+const API = 'http://localhost:3000';
 
-const API = 'http://localhost:3000'; // The base URL for our backend server
-
-// ── USER FUNCTIONS ────────────────────────────────────────────────────────────
-
-// Check if username and password match a user in the database
 export async function loginUser(username, password) {
-  const response = await fetch(`${API}/users`);        // Get all users from the server
-  const users = await response.json();                 // Convert the response to a JavaScript array
-
-  // Loop through users to find one that matches the username AND password
+  const response = await fetch(`${API}/users`);
+  const users = await response.json();
   const match = users.find(
     (user) => user.username === username && user.password === password
   );
-
   if (match) {
-    return { success: true, user: match };             // Login worked, return the user object
+    return { success: true, user: match };
   } else {
-    return { success: false, error: 'Invalid username or password' }; // No match found
+    return { success: false, error: 'Invalid username or password' };
   }
 }
 
-// Create a new user account in the database
 export async function registerUser(username, password, role) {
-  // First check if this username is already taken
   const checkResponse = await fetch(`${API}/users?username=${username}`);
-  const existing = await checkResponse.json();         // Will be an array (empty if username is free)
-
+  const existing = await checkResponse.json();
   if (existing.length > 0) {
-    return { success: false, error: 'Username already taken' }; // Username is taken
+    return { success: false, error: 'Username already taken' };
   }
-
-  // Username is free, so create the new user
   const response = await fetch(`${API}/users`, {
-    method: 'POST',                                    // POST means we are creating something new
-    headers: { 'Content-Type': 'application/json' },  // Tell the server we are sending JSON
-    body: JSON.stringify({ username, password, role }) // Convert the user object to a JSON string
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password, role })
   });
-
   if (response.ok) {
-    return { success: true };                          // Account created successfully
+    return { success: true };
   } else {
     return { success: false, error: 'Registration failed' };
   }
 }
 
-// ── BOOK FUNCTIONS ────────────────────────────────────────────────────────────
-
-// Get all books from the database
 export async function fetchBooks() {
-  const response = await fetch(`${API}/books`);        // Send GET request to /books
-  return response.json();                              // Return the array of books
+  const response = await fetch(`${API}/books`);
+  return response.json();
 }
 
-// Add a new book to the database
 export async function addBook(title, author, genre, rating) {
   const response = await fetch(`${API}/books`, {
-    method: 'POST',                                    // POST = create new
+    method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({                             // The new book object
-      title,
-      author,
-      genre,
-      rating: Number(rating),                          // Make sure rating is a number, not a string
-      status: 'Available'                              // All new books start as Available
-    })
-  });
-  return response.json();                              // Return the newly created book (with its id)
-}
-
-// Replace a book's data completely (used when editing)
-export async function updateBook(id, bookData) {
-  const response = await fetch(`${API}/books/${id}`, { // Target the specific book by id
-    method: 'PUT',                                     // PUT = replace the whole object
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(bookData)                     // Send the updated book data
+    body: JSON.stringify({ title, author, genre, rating: Number(rating), status: 'Available' })
   });
   return response.json();
 }
 
-// Update only one field of a book (used for checkout/return to change status)
+export async function updateBook(id, bookData) {
+  const response = await fetch(`${API}/books/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bookData)
+  });
+  return response.json();
+}
+
 export async function patchBook(id, changes) {
   const response = await fetch(`${API}/books/${id}`, {
-    method: 'PATCH',                                   // PATCH = update only specific fields
+    method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(changes)                      // e.g. { status: 'Checked Out' }
+    body: JSON.stringify(changes)
   });
   return response.json();
 }
 
-// Delete a book from the database
 export async function deleteBook(id) {
-  await fetch(`${API}/books/${id}`, {
-    method: 'DELETE'                                   // DELETE = remove this book
-  });
+  await fetch(`${API}/books/${id}`, { method: 'DELETE' });
 }
 
-// ── TRANSACTION FUNCTIONS ─────────────────────────────────────────────────────
-
-// Get all transactions from the database
 export async function fetchTransactions() {
-  const response = await fetch(`${API}/transactions`); // Send GET request to /transactions
-  return response.json();                              // Return the array of transactions
+  const response = await fetch(`${API}/transactions`);
+  return response.json();
 }
 
-// Save a new checkout or return transaction to the database
 export async function addTransaction(bookId, bookTitle, username, action) {
   const response = await fetch(`${API}/transactions`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      bookId: Number(bookId),                          // The id of the book
-      bookTitle,                                       // The title (so we can display it later)
-      username,                                        // Who did the action
-      action,                                          // Either 'Checkout' or 'Return'
-      timestamp: new Date().toISOString()              // Current date and time
+      bookId: Number(bookId),
+      bookTitle,
+      username,
+      action,
+      timestamp: new Date().toISOString()
     })
   });
-  return response.json();                              // Return the saved transaction
+  return response.json();
 }

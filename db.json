@@ -64,7 +64,7 @@
       "author": "Kudzayi Chimbodza",
       "genre": "Inspiration",
       "rating": 5,
-      "status": "Checked Out"
+      "status": "Available"
     }
   ],
   "transactions": [
@@ -187,6 +187,14 @@
       "username": "admin",
       "action": "Checkout",
       "timestamp": "2026-03-10T23:45:07.902Z"
+    },
+    {
+      "id": "1ccb",
+      "bookId": null,
+      "bookTitle": "Art of Success",
+      "username": "admin",
+      "action": "Return",
+      "timestamp": "2026-03-11T00:01:27.547Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
