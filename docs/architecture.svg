@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" width="960" height="320" role="img" aria-labelledby="t d">
+  <title id="t">Library App architecture</title>
+  <desc id="d">The browser runs a React 19 and Material UI app built with Vite. App.jsx keeps the current user in localStorage. LoginPage handles login and registration with a User or Librarian role. LibraryPage has three tabs: Books (the catalogue) with search, genre filter, checkout and return, plus edit and delete for librarians; Add Book for librarians only; and History. All calls go through api.js using fetch to JSON Server on port 3000, which stores users, books and transactions in db.json. A checkout is a PATCH of the book status plus a POST of a transaction record.</desc>
+  <style>
+    :root { --ink:#1f2937; --sub:#57606a; --line:#d0d7de; --card:#ffffff; --on:#1565c0; --tint:#e8f1fc; --group:#f6f8fa; }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink:#e6edf3; --sub:#9198a1; --line:#3d444d; --card:#161b22; --on:#58a6ff; --tint:#0f2440; --group:#0d1117; }
+    }
+    text { font-family: Inter, "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif; }
+    .title { font-size:14.5px; font-weight:700; fill:var(--ink); text-anchor:middle; }
+    .sub   { font-size:11px; fill:var(--sub); text-anchor:middle; }
+    .pill-t{ font-size:12px; font-weight:600; fill:var(--ink); text-anchor:middle; }
+    .lbl   { font-size:10.5px; fill:var(--sub); text-anchor:middle; }
+    .node  { fill:var(--card); stroke:var(--line); stroke-width:1.5; }
+    .hub   { fill:var(--tint); stroke:var(--on); stroke-width:1.5; }
+    .group { fill:var(--group); stroke:var(--line); stroke-width:1.5; stroke-dasharray:5 4; }
+    .wire  { stroke:var(--line); stroke-width:1.5; fill:none; }
+    .head  { fill:var(--line); }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="head" d="M0 0 L10 5 L0 10z"/></marker>
+  </defs>
+
+  <!-- Browser group -->
+  <rect class="group" x="20" y="25" width="520" height="245" rx="14"/>
+  <text class="title" x="280" y="48">Browser · React 19 + Material UI (Vite)</text>
+  <rect class="node" x="40" y="62"  width="480" height="30" rx="8"/><text class="pill-t" x="280" y="82">App.jsx · current user kept in localStorage</text>
+  <rect class="node" x="40" y="102" width="480" height="30" rx="8"/><text class="pill-t" x="280" y="122">LoginPage · log in or register as User or Librarian</text>
+  <text class="lbl" x="280" y="152">LibraryPage tabs</text>
+  <rect class="node" x="40"  y="160" width="200" height="50" rx="8"/>
+  <text class="pill-t" x="140" y="180">Books (catalogue)</text><text class="lbl" x="140" y="197">search · genre · checkout / return</text>
+  <rect class="node" x="250" y="160" width="130" height="50" rx="8"/>
+  <text class="pill-t" x="315" y="180">Add Book</text><text class="lbl" x="315" y="197">librarian only</text>
+  <rect class="node" x="390" y="160" width="130" height="50" rx="8"/>
+  <text class="pill-t" x="455" y="180">History</text><text class="lbl" x="455" y="197">every checkout / return</text>
+  <rect class="hub" x="40" y="222" width="480" height="30" rx="8"/><text class="pill-t" x="280" y="242">api.js · fetch() to http://localhost:3000</text>
+
+  <!-- wires -->
+  <path class="wire" d="M520 237 H575 V95 H618" marker-end="url(#a)"/>
+  <text class="lbl" x="580" y="170" text-anchor="start">REST</text>
+  <path class="wire" d="M780 150 V178" marker-end="url(#a)"/>
+
+  <!-- JSON Server -->
+  <rect class="hub" x="620" y="40" width="320" height="110" rx="12"/>
+  <text class="title" x="780" y="70">JSON Server :3000</text>
+  <text class="sub" x="780" y="92">GET · POST · PUT · PATCH · DELETE</text>
+  <text class="sub" x="780" y="110">checkout = PATCH /books/:id status</text>
+  <text class="sub" x="780" y="126">+ POST /transactions</text>
+
+  <!-- db.json -->
+  <rect class="node" x="620" y="180" width="320" height="90" rx="12"/>
+  <text class="title" x="780" y="210">db.json</text>
+  <text class="sub" x="780" y="230">users (username, password, role)</text>
+  <text class="sub" x="780" y="246">books (title, author, genre, rating, status)</text>
+  <text class="sub" x="780" y="262">transactions (book, user, action, time)</text>
+
+  <text class="sub" x="480" y="300">No server-side logic: roles are checked in the React UI only, and JSON Server accepts any request.</text>
+</svg>
